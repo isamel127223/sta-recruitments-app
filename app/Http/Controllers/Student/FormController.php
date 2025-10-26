@@ -81,13 +81,26 @@ class FormController extends Controller
         try {
             // 2. อัปเดตข้อมูลส่วนตัว (Part 1) ลงในตาราง 'students'
             
-            /** @var \App\Models\Student $student */ // <-- 1. เพิ่มบรรทัดนี้
+            /** @var \App\Models\Student $student */ 
             $student = Auth::guard('student')->user();
             
-            // 2. บรรทัดนี้จะหายแดง
+            // ✅ ✅ ✅ นี่คือจุดที่แก้ไข: เติมฟิลด์ที่ขาดหายไปทั้งหมด ✅ ✅ ✅
             $student->update($request->only([
-                'prefix', 'id_card_number', 'dob', 'age', 'nationality', 'ethnicity',
-                // ... (ข้อมูลอื่นๆ)
+                'prefix', 
+                'id_card_number', 
+                'dob', 
+                'age', 
+                'nationality', 
+                'ethnicity',
+                'religion',
+                'address_house_no',
+                'address_province',
+                'address_district',
+                'address_subdistrict',
+                'address_postal_code',
+                'parent_name',
+                'parent_phone',
+                'parent_relation'
             ]));
 
             // 3. จัดการอัปโหลดไฟล์ (Part 4)
@@ -119,7 +132,7 @@ class FormController extends Controller
             DB::commit(); // ยืนยันการบันทึก
 
             return redirect()->route('dashboard')
-                         ->with('status', 'ยื่นใบสมัครเรียนฉบับสมบูรณ์เรียบร้อยแล้ว! (สถานะ: รอตรวจสอบ)');
+                             ->with('status', 'ยื่นใบสมัครเรียนฉบับสมบูรณ์เรียบร้อยแล้ว! (สถานะ: รอตรวจสอบ)');
 
         } catch (\Exception $e) {
             DB::rollBack(); // เกิดข้อผิดพลาด ให้ย้อนกลับ
