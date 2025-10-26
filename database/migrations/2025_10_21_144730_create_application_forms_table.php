@@ -13,23 +13,30 @@ return new class extends Migration
         Schema::create('application_forms', function (Blueprint $table) {
             $table->id('application_id');
             
-            // FK อ้างอิงตาราง students 
-            $table->unsignedBigInteger('student_id');
-            $table->foreign('student_id')->references('student_id')->on('students');
+            // (FKs - ข้อมูลหลัก)
+            // (เราใช้ foreignId() ซึ่งเป็นวิธีเขียนที่สั้นกว่า)
+            $table->foreignId('student_id')->constrained('students', 'student_id');
+            $table->foreignId('faculty_id')->constrained('faculties', 'faculty_id');
+            $table->foreignId('program_id')->constrained('programs', 'program_id');
             
-            // FK อ้างอิงตาราง faculties
-            $table->unsignedBigInteger('faculty_id');
-            $table->foreign('faculty_id')->references('faculty_id')->on('faculties');
+            // (Part 2: Education Info - ฟิลด์ใหม่)
+            $table->string('education_status', 100)->nullable();
+            $table->string('graduation_year', 4)->nullable();
+            $table->string('school_name', 255)->nullable();
+            $table->string('school_province', 100)->nullable();
+            $table->string('school_major', 100)->nullable();
+            $table->decimal('gpax', 4, 2)->nullable();
+            $table->string('gpax_type', 100)->nullable();
             
-            // FK อ้างอิงตาราง programs
-            $table->unsignedBigInteger('program_id');
-            $table->foreign('program_id')->references('program_id')->on('programs');
-            
-            $table->string('transcript_file', 255)->nullable(); // 
-            $table->string('id_card_file', 255)->nullable(); // 
-            $table->string('status', 50)->default('รอตรวจสอบ'); // 
-            $table->datetime('submitted_at')->useCurrent(); // 
-            // (เราจะไม่ใช้ timestamps() เพราะใน doc ระบุแค่ submitted_at)
+            // (Part 4: Document Uploads - ฟิลด์ใหม่)
+            $table->string('transcript_file', 255); // (จำเป็น)
+            $table->string('id_card_file', 255); // (จำเป็น)
+            $table->string('graduation_certificate_file', 255)->nullable(); // (ไม่บังคับ)
+            $table->string('other_documents_file', 255)->nullable(); // (ไม่บังคับ)
+
+            // (Admin Fields - ฟิลด์เดิม)
+            $table->string('status', 50)->default('รอตรวจสอบ');
+            $table->datetime('submitted_at')->useCurrent();
         });
     }
 

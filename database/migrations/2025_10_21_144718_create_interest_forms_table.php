@@ -13,17 +13,18 @@ return new class extends Migration
         Schema::create('interest_forms', function (Blueprint $table) {
             $table->id('interest_id');
             
-            // FK อ้างอิงตาราง students 
-            $table->unsignedBigInteger('student_id');
-            $table->foreign('student_id')->references('student_id')->on('students');
-            
-            // FK อ้างอิงตาราง programs
-            $table->unsignedBigInteger('program_id');
-            $table->foreign('program_id')->references('program_id')->on('programs');
+            $table->foreignId('student_id')->constrained('students', 'student_id');
+            $table->foreignId('program_id')->constrained('programs', 'program_id');
 
-            $table->text('reason')->nullable(); // 
-            $table->datetime('created_at')->useCurrent(); // 
-            // (เราจะไม่ใช้ timestamps() เพราะใน doc ระบุแค่ created_at)
+            // --- เปลี่ยนแปลงตรงนี้ ---
+            // 1. เปลี่ยน reason เป็น Enum หรือ String สำหรับเก็บ Choice หลัก
+            $table->string('reason_choice', 50)->nullable(); // เช่น 'ทดลอง', 'แนะนำ', 'โค้ด', 'อื่นๆ'
+            
+            // 2. เพิ่มคอลัมน์สำหรับเก็บข้อความ "อื่นๆ"
+            $table->text('reason_other')->nullable(); 
+            // -----------------------
+
+            $table->datetime('created_at')->useCurrent();
         });
     }
 

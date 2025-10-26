@@ -348,7 +348,7 @@
         </div>
     </section>
 
-    <footer class="w-full text-center p-6 text-white bg-black border-t border-gray-200 mt-12">
+    <footer class="w-full text-center p-6 text-gray-500 bg-gray-100 border-t border-gray-200 mt-12">
         <div>
             © {{ date('Y') }} คณะวิทยาศาสตร์เทคโนโลยีและการเกษตร มหาวิทยาลัยราชภัฏยะลา
         </div>
@@ -360,7 +360,7 @@
     {{-- ================================================== --}}
     
     <div id="videoModal" 
-         class="hidden fixed inset-0 bg-black/80  items-center justify-center z-50 p-4">
+         class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
         
         <div class="bg-black rounded-lg shadow-2xl relative w-full max-w-3xl overflow-hidden">
             
