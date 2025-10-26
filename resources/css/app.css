@@ -1,12 +1,47 @@
-@import 'tailwindcss';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source "../**/*.blade.php";
-@source "../**/*.js";
-@source "../**/*.vue";
-
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+.login-card {
+    background: #1e1e1e;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    max-width: 420px;
+    margin: 4rem auto;
+    padding: 2rem 2.5rem;
+    color: #fff;
 }
+.login-title {
+    color: #FFD600;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+.login-subtitle {
+    color: #bfbfbf;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+.btn-login {
+    background: linear-gradient(90deg, #FFD600, #ffcc00);
+    color: #000;
+    font-weight: 700;
+    transition: 0.3s;
+    width: 100%;
+}
+.btn-login:hover {
+    background: linear-gradient(90deg, #ffcc00, #FFD600);
+    transform: scale(1.03);
+}
+.link {
+    color: #FFD600;
+    transition: 0.3s;
+}
+.link:hover {
+    text-decoration: underline;
+    color: #fff;
+}
+/* ========================================= */
+/* (ใหม่) CSS สำหรับหน้า Auth (Login/Register) */
+/* ========================================= */
+
