@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="video-card group bg-white rounded-lg shadow-md overflow-hidden cursor-pointer"
-                     data-video-src="{{ asset('videos/comsci-intro.mp4') }}"
+                     data-video-src="{{ asset('videos/001.mp4') }}"
                      data-video-title="แนะนำสาขา ComSci">
                     <div class="relative overflow-hidden">
                         <img src="{{ asset('images/placeholder-comsci.jpg') }}" alt="แนะนำสาขา ComSci"
